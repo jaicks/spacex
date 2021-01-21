@@ -20,7 +20,6 @@ class PayloadComponent extends Component {
   }
 
   filterHandle = () => {
-    console.log("test");
     let currentList = [];
     let newList = [];
     let finalList = [];
@@ -32,7 +31,6 @@ class PayloadComponent extends Component {
         const filter =
           this.state.searchString && this.state.searchString.toLowerCase();
         var datass = lc.includes(filter);
-        console.log(datass);
         if (datass) {
           finalList.push(item);
         }
@@ -40,16 +38,12 @@ class PayloadComponent extends Component {
     } else {
       finalList = this.props.list ? this.props.list : [];
     }
-    console.log(finalList);
     return finalList;
   };
   handlePageChange = (event, newPage) => {
-    console.log(event.target.value, newPage);
     this.setState({ page: newPage });
   };
   render() {
-    console.log(this.props.list);
-    // const {list} = this.props;
     let filterData = this.filterHandle();
     let finalData = [];
     if (filterData && filterData.length > 0) {
@@ -58,7 +52,6 @@ class PayloadComponent extends Component {
         this.state.page * this.state.per_page
       );
     }
-    console.log(finalData);
     let count;
     if ((filterData && filterData.length) % this.state.per_page > 0) {
       count =
@@ -67,7 +60,6 @@ class PayloadComponent extends Component {
     } else {
       count =  Number(((filterData && filterData.length) / this.state.per_page).toFixed(0));
     }
-    console.log(((filterData && filterData.length) / this.state.per_page))
     return (
       <Fragment>
         <div className="container mt-2">
